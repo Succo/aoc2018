@@ -7,7 +7,7 @@ fn main() -> std::io::Result<()> {
     let file = File::open("input")?;
     let buf_reader = BufReader::new(file);
     let lines = buf_reader.lines().map(|l| parse(&l.unwrap()));
-    let sum = lines.fold(0, |acc : i32, x : i32| acc + x );
+    let sum : i32 = lines.sum();
     println!("{}", sum);
     Ok(())
 }

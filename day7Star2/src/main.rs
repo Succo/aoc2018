@@ -54,7 +54,7 @@ fn main() -> std::io::Result<()> {
                     };
                 }
             }
-            // We won't free busy worker because of the break
+            // We won't free busy worker because of the continue
             *worker = Worker::Free;
         }
 

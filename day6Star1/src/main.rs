@@ -66,9 +66,7 @@ fn main() -> std::io::Result<()> {
                                            .unwrap())
         .collect();
     let bbox = get_bounding_box(&points);
-    //println!("{:?}", bbox);
-    //let p0 = points[0].clone();
-    //println!("{:?}", escapes_bbox(bbox, points, p0));
+    println!("{:?}", bbox);
 
     let mut closests: HashMap<Coordinates, isize> = HashMap::new();
     for x in bbox.0..bbox.1 {
@@ -100,10 +98,10 @@ fn main() -> std::io::Result<()> {
 // returns (min_x, max_x, min_y, max_y)
 fn get_bounding_box(points: &Vec<Coordinates>) -> Bbox {
     let init = (points[0].x, points[0].x, points[0].y, points[0].y);
-    points.iter().fold(init, |acc, point| (acc.0.min(point.x) - 10,
-                                           acc.0.max(point.x) + 10,
-                                           acc.1.min(point.y) - 10,
-                                           acc.1.max(point.y) + 10))
+    points.iter().fold(init, |acc, point| (acc.0.min(point.x),
+                                           acc.1.max(point.x),
+                                           acc.2.min(point.y),
+                                           acc.3.max(point.y)))
 }
 
 fn escapes_bbox(bbox: Bbox, points: &Vec<Coordinates>, point: &Coordinates) -> bool {

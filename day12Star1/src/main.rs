@@ -17,14 +17,12 @@ fn main() -> std::io::Result<()> {
         .collect();
 
     let mut min: isize = 0;
-    // let mut new_state = String::new();
     for _i in 0..20 {
         let mut size: usize = state.len();
         state = state.trim_left_matches('.').to_string();
         min += size as isize - state.len() as isize;
         state = state.trim_right_matches('.').to_string();
         size = state.len();
-        println!("{}", state);
 
         // Adds some padding to state
         let mut s = String::from("....");
